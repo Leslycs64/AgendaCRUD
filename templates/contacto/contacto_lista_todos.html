@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block contenido %}
+  <table class="table">
+  <thead>
+    <th>Nombre</th>
+    <th>Correo</th>
+  </thead>
+    <tdoby>
+
+      {% for contacto in lista %}
+        <tr class="renglon">
+          <td>
+            <a href="/contacto/editarContacto?id={{ contacto.id }}">{{ contacto }}</a>
+          </td>
+          <td>
+            {{ contacto.correo }}
+          </td>
+        </tr>
+      </h1>
+      {% endfor %}
+      </tdoby>
+  </table>
+
+{% endblock contenido %}

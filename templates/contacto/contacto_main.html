@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block contenido %}
+  {{ contenido }}
+  <div class="formulario">
+  <form action="/contacto/guardaContacto" method="post">
+  {% csrf_token %}
+    {{ formulario.as_p }}
+    <input type="submit" value="Guardar">
+  </form>
+  </div>
+
+{% endblock contenido %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block contenido %}
+  {{ contenido }}
+  <form action="/contacto/actualizaContacto" method="post">
+
+  {% csrf_token %}
+    {{ formulario.as_p }}
+    <input type="hidden" name="id" id="id" value="{{ contacto.id }}">
+    <input type="submit" value="Actualizar">
+  </form>
+
+{% endblock contenido %}
