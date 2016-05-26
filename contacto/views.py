@@ -116,3 +116,24 @@ def ActualizaContacto(request):
     }
     contexto.update(csrf(request))
     return render_to_response('contacto_main.html',contexto,context_instance=RequestContext(request))
+
+def EliminarContacto ( request ) :
+  title = '::Eliminando Contacto'
+
+  if request.method == 'GET' :
+    contacto = Contacto.objects.get ( id=request.GET [ 'id' ] )
+    print contacto
+    contacto.delete()
+
+    contexto = {
+      'title' : 'Contacto Eliminado' ,
+      'contenido' : 'Contacto Eliminado Correctamente' ,
+    }
+    return render_to_response ( 'contacto_guardado.html' , contexto )
+
+  else :
+    contexto = {
+      'title' : '::Error' ,
+      'contenido' : 'Revisa la información, parece que no es válida'
+    }
+    return render_to_response ( 'contacto_lista_todos.html' , contexto , context_instance=RequestContext ( request ) )
