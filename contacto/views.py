@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response , render
 from django.template import RequestContext
 from django.template.context_processors import csrf
+from contacto.export_contacto_pdf import ExportarContactoPDF
 from .forms import FormContacto
 from .models import Contacto
 
@@ -137,3 +138,20 @@ def EliminarContacto ( request ) :
       'contenido' : 'Revisa la información, parece que no es válida'
     }
     return render_to_response ( 'contacto_lista_todos.html' , contexto , context_instance=RequestContext ( request ) )
+
+from reportlab.pdfgen import canvas
+
+def ExportarContacto(request):
+  title = '::Exportar Contacto a PDF'
+
+  if request.method == 'GET' :
+    contacto = Contacto.objects.get ( id=request.GET [ 'id' ] )
+    pdf = ExportarContactoPDF(contacto)
+    return pdf
+
+  else :
+    contexto = {
+      'title' : '::Error' ,
+      'contenido' : 'Revisa la información, parece que no es válida'
+    }
+    return render_to_response ( 'base.html' , contexto , context_instance=RequestContext ( request ) )

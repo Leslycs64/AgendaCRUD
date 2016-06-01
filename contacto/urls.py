@@ -22,4 +22,5 @@ urlpatterns = [
     url ( r'^editarContacto' , EditarContacto ) ,
     url ( r'^actualizaContacto' , ActualizaContacto) ,
     url ( r'^eliminarContacto' , EliminarContacto) ,
+    url ( r'^exportarContacto' , ExportarContacto) ,
 ]

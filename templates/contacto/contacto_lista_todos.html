@@ -6,7 +6,8 @@
     <td>Nombre</td>
     <td>Correo</td>
     <td>Editar</td>
-    <td> Eliminar </td>
+    <td>Eliminar</td>
+    <td>Exportar</td>
   </tr>
 
       {% for contacto in lista %}
@@ -25,6 +26,11 @@
           <td>
             <a href="/contacto/eliminarContacto?id={{ contacto.id }}">
               <img src="{% static "images/eliminar.png" %}" alt="Eliminar" width="15" height="15">
+            </a>
+          </td>
+          <td>
+            <a href="/contacto/exportarContacto?id={{ contacto.id }}" target="_blank">
+              <img src="{% static "images/pdf.png" %}" alt="Exportar a PDF" width="15" height="15">
             </a>
           </td>
         </tr>
