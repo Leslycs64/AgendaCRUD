@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 from io import BytesIO
 from django.conf import settings
-import os
-from reportlab.lib import colors
+
 from reportlab.lib.units import inch
 from reportlab.lib.enums import TA_CENTER
 from django.shortcuts import HttpResponse
@@ -38,7 +37,6 @@ def ExportarContactoPDF(_contacto):
 
     else:
         response = HttpResponse(content_type='application/pdf')
-        # pdf_name = "datos_contacto_%s.pdf" % (contacto.id)  # llamado clientes
         buff = BytesIO()
         estilo = getSampleStyleSheet()
         pdf = SimpleDocTemplate(buff,
