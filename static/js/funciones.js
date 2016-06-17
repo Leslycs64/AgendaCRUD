@@ -3,7 +3,3 @@ $(document).ready(function() {
     $('.content').toggleClass('isOpen');
   });
 });
-
-function Hola(){
-  alert('Hola Mundo!');
-}
