@@ -23,4 +23,6 @@ urlpatterns = [
     url ( r'^actualizaContacto' , ActualizaContacto) ,
     url ( r'^eliminarContacto' , EliminarContacto) ,
     url ( r'^exportarContacto' , ExportarContacto) ,
+    url ( r'^$' , index , name='form' ) ,
+    url ( r'^find_municipios/$' , find_municipios , name='find_municipios' ) ,
 ]

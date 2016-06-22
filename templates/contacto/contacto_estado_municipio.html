@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block contenido %}
+  <div id="select_form">
+    <form action="/contacto/find_municipios/" method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="field_wrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field }}
+        </div>
+      {% endfor %}
+{#    <input type="submit" name="submit" value="Search"  />#}
+    </form>
+</div>
+
+{% endblock contenido %}
+{% block js %}
+  <script src="{% static "js/select_estado_municipio.js" %}"></script>
+{% endblock js %}
+
+{#{% url search %}#}

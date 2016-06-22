@@ -15,7 +15,7 @@ SECRET_KEY = '_&c_96m-(l3sl)-868yg_s1w3i&l!(7x2c^fm-uh^xl8ta2-rr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1',]
+ALLOWED_HOSTS = ['localhost','127.0.0.1','agenda.taz.com']
 
 
 # Application definition
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'panel',
     'contacto',
+    'import_export' ,
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -121,6 +122,7 @@ USE_TZ = True
 
 MEDIA_ROOT = "/var/www/static_files/static/"
 STATIC_URL = '/archivos/'
+STATIC_ROOT = "/var/www/GitHub/AgendaCRUD/static/"
 
 
 STATICFILES_DIRS = (

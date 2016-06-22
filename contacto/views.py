@@ -1,10 +1,13 @@
 # -*- encoding: utf-8 -*-
+from django.http import HttpResponse
 from django.shortcuts import render_to_response , render
 from django.template import RequestContext
 from django.template.context_processors import csrf
+import simplejson
 from contacto.export_contacto_pdf import ExportarContactoPDF
 from .forms import FormContacto
-from .models import Contacto
+from .models import Contacto , EstadosMunicipios
+
 
 def main(request):
   formulario = FormContacto()
@@ -155,3 +158,33 @@ def ExportarContacto(request):
       'contenido' : 'Revisa la información, parece que no es válida'
     }
     return render_to_response ( 'base.html' , contexto , context_instance=RequestContext ( request ) )
+
+from contacto.forms import SelectEstadoMunicipio
+
+def index ( request ) :
+  # create context dictionary
+  context = {'search':'/contacto/buscaMun' }
+  # variables...
+  context [ 'form' ] = SelectEstadoMunicipio ( )
+  return render ( request , 'contacto_estado_municipio.html' , context )
+
+#   find_cities (ajax processor)
+def find_municipios(request, qs=None):
+  print "entrando"
+  if qs is None:
+      qs = EstadosMunicipios.objects.values_list('nombre_municipio', flat=True).all()
+  if request.GET.get('nombre_estado'):
+      estado=request.GET.get('nombre_estado')
+      print estado
+  # create an empty list to hold the results
+  results = []
+  qs = EstadosMunicipios.objects.values_list('nombre_municipio', flat=True).filter(nombre_estado=estado).order_by('nombre_municipio')
+  # iterate over each city and append to results list
+  for municipio in qs:
+      results.append(municipio)
+  # if no results found then append a relevant message to results list
+  if not results:
+      # if no results then dispay empty message
+      results.append(_("No cities found"))
+  # return JSON object
+  return HttpResponse(simplejson.dumps(results))
